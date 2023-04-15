@@ -1,0 +1,4 @@
+--patch-module
+jmp.service.api=_
+--add-reads
+jmp.service.api=ALL-UNNAMED

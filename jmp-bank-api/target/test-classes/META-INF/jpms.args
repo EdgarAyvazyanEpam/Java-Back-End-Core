@@ -1,0 +1,4 @@
+--patch-module
+jmp.bank.api=_
+--add-reads
+jmp.bank.api=ALL-UNNAMED

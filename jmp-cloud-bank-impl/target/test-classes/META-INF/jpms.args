@@ -1,0 +1,4 @@
+--patch-module
+jmp.cloud.bank.impl=_
+--add-reads
+jmp.cloud.bank.impl=ALL-UNNAMED

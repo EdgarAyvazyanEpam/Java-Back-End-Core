@@ -3,15 +3,13 @@ package com.epam.jmp.cloud.bank.impl;
 import com.epam.jmp.bank.api.Bank;
 import com.epam.jmp.dto.BankCard;
 import com.epam.jmp.dto.CreditBankCard;
-import com.epam.jmp.dto.DebitCard;
 import com.epam.jmp.dto.User;
-import com.epam.jmp.enums.BankCardType;
+import com.epam.jmp.dto.BankCardType;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiFunction;
-import java.util.function.Supplier;
 
 public class BankImpl implements Bank {
 
