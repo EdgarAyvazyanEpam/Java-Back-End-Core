@@ -1,52 +1,29 @@
 package com.epam.jmp.cloud.bank.impl;
 
 import com.epam.jmp.bank.api.Bank;
-import com.epam.jmp.dto.BankCard;
-import com.epam.jmp.dto.CreditBankCard;
-import com.epam.jmp.dto.User;
-import com.epam.jmp.dto.BankCardType;
+import com.epam.jmp.dto.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.BiFunction;
 
 public class BankImpl implements Bank {
 
-    private Map<BankCardType, BiFunction<String, User, BankCard>> creators;
-
-    public BankImpl() {
-        creators = new HashMap<>();
-        creators.put(BankCardType.CREDIT, CreditBankCard::new);
-        creators.put(BankCardType.DEBIT, CreditBankCard::new);
-    }
+    private Map<User, BankCard> creators = new HashMap<>();
 
     @Override
     public BankCard createBankCard(User user, BankCardType cardType) {
-        String number = UUID.randomUUID().toString();
-        return creators.getOrDefault(cardType, this::throwIfTypeIsUnknown).apply(number,user);
+        var number = UUID.randomUUID().toString();
+        BankCard bankCard = null;
+        switch (cardType) {
+            case CREDIT -> bankCard = new CreditBankCard(number, user);
 
-//        if (BankCardType.CREDIT == cardType) {
-//            return new CreditBankCard(number, user);
-//        }else if (BankCardType.DEBIT == cardType){
-//            return new DebitCard(number, user);
-//        }else {
-//            throw new IllegalArgumentException("unknown credit card type" + cardType);
-//        }
-//        if (cardType == null) {
-//            throw new IllegalArgumentException("card type cannot be null");
-//        }
-//        switch (cardType) {
-//            case DEBIT -> {
-//                return new DebitCard(number, user);
-//            }
-//            case CREDIT -> {
-//                return new CreditBankCard(number, user);
-//            }
-//            default ->
-//                throw new IllegalArgumentException("unknown credit card type" + cardType);
-//
-//        }
+            case DEBIT -> bankCard = new DebitCard(number, user);
+
+            default -> throwIfTypeIsUnknown(number, user);
+        }
+        creators.put(user, bankCard);
+        return bankCard;
     }
 
     private BankCard throwIfTypeIsUnknown(String s, User user) {

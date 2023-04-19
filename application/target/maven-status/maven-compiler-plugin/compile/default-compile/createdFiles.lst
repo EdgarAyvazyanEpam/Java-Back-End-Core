@@ -1,3 +1,4 @@
+com/epam/jmp/application/exception/SubscriptionNotFoundException.class
 module-info.class
-com/epam/jmp/application/SubscriptionNotFoundException.class
+com/epam/jmp/application/BankUser.class
 com/epam/jmp/application/Main.class

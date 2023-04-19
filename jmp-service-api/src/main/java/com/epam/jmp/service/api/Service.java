@@ -5,6 +5,7 @@ import com.epam.jmp.dto.Subscription;
 import com.epam.jmp.dto.User;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -13,6 +14,7 @@ public interface Service {
     void subscribe(BankCard bankCard);
     Optional<Subscription> getSubscriptionByBankCardNumber(String cardNumber);
     Optional<Subscription> getSubscriptionByBankCardNumber(Predicate<Subscription> filter);
+    ArrayList<List<Subscription>> getAllSubscriptions();
     List<User> getAllUsers();
 
     default double getAverageUserAge() {

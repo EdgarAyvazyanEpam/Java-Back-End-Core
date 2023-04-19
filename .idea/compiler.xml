@@ -7,9 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jmp-service-api" />
+        <module name="jmp-dto" />
         <module name="jmp-cloud-bank-impl" />
         <module name="application" />
-        <module name="jmp-dto" />
         <module name="jmp-bank-api" />
       </profile>
     </annotationProcessing>

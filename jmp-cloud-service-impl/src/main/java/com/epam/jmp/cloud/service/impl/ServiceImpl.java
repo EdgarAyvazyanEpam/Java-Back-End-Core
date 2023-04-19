@@ -24,15 +24,6 @@ public class ServiceImpl implements Service {
 
     @Override
     public Optional<Subscription> getSubscriptionByBankCardNumber(String cardNumber) {
-
-//        for (List<Subscription> userStorage : storage.values()) {
-//            for (Subscription subscription : userStorage) {
-//                if (subscription.bankCard().equals(cardNumber)){
-//
-//                    return Optional.of(subscription);
-//                }
-//            }
-//        }
         Predicate<Subscription> subscriptionPredicate = subscription -> subscription.bankCard().equals(cardNumber);
         return getSubscriptionByBankCardNumber(subscriptionPredicate);
     }
@@ -45,6 +36,12 @@ public class ServiceImpl implements Service {
                 .flatMap(Collection::stream)
                 .filter(filter)
                 .findFirst();
+    }
+
+    @Override
+    public ArrayList<List<Subscription>> getAllSubscriptions() {
+        return new ArrayList<>(storage
+                .values());
     }
 
     @Override
